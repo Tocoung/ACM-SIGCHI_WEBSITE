@@ -1,17 +1,13 @@
-
 import React from "react";
-import vpn from '../assets/vpn.png'
-import copeople from '../assets/copeople.png'
-import Footer from './Footer'
+import vpn from '../assets/vpn.png'; // Replace with appropriate images
+import copeople from '../assets/copeople.png'; // Replace with appropriate images
+import Footer from './Footer';
 
 const ProjectCard = ({ image, title, description, git, technologies }) => {
     return (
         <div className="max-w-sm sm:max-w-sm md:max-w-sm bg-gray-900 border border-neutral-100 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            {title=='Snap Shot' && <a href="#">
-                <img className="w-full rounded-t-lg h-auto object-cover " src={vpn} alt="" />
-            </a>}
-            {title=='Co People' && <a href="#">
-                <img className="w-full rounded-t-lg h-auto object-cover " src={copeople} alt="" />
+            {image && <a href="#">
+                <img className="w-full rounded-t-lg h-auto object-cover" src={image} alt={title} />
             </a>}
             <div className="p-4 sm:p-6">
                 <a href="#">
@@ -20,17 +16,21 @@ const ProjectCard = ({ image, title, description, git, technologies }) => {
                 <p className="font-normal text-sm sm:text-base md:text-lg text-gray-300 dark:text-gray-400">{description}</p>
             </div>
             <div className='m-2 sm:m-4 lg:m-6 flex justify-between'>
-                <div className='flex flex-wrap gap-2 pl-2'>
-                    {technologies.map((tag, index) => (
-                        <p
-                            key={`${index}-${tag}`}
-                            className='text-[14px] text-blue-500'
-                        >
-                            #{tag}
-                        </p>
-                    ))}
-                </div>
-                <a href={git} className="text-red-300 border border-gray-200 rounded-lg shadow p-1 sm:p-2 lg:p-3 hover:text-green-500 duration-300">GitHub</a>
+                {technologies && (
+                    <div className='flex flex-wrap gap-2 pl-2'>
+                        {technologies.map((tag, index) => (
+                            <p
+                                key={`${index}-${tag}`}
+                                className='text-[14px] text-blue-500'
+                            >
+                                #{tag}
+                            </p>
+                        ))}
+                    </div>
+                )}
+                {git && (
+                    <a href={git} className="text-red-300 border border-gray-200 rounded-lg shadow p-1 sm:p-2 lg:p-3 hover:text-green-500 duration-300">GitHub</a>
+                )}
             </div>
         </div>
     );
@@ -46,7 +46,6 @@ const Projects = () => {
                         image={item.image}
                         title={item.title}
                         description={item.description}
-                        links={item.links}
                         git={item.git}
                         technologies={item.technologies}
                     />
@@ -57,22 +56,37 @@ const Projects = () => {
     );
 }
 
-
 export const project = [
     {
-        title:'Co People',
-        description:'Co People is a dynamic web application I crafted using React, Node JS and React. This project is a modern and engaging social platform that allows users to connect, share content and interact seamlessly.',
-        image: {vpn},
-        git:'https://github.com/nithingooud/CoPeople',
-        technologies:['MongoDb' ,'ReactJS' , 'NodeJS']
+        title: 'UnMute Project',
+        description: 'The UnMute Project, funded by EPSRC and led by the University of Edinburgh and Swansea University in collaboration with Translators Without Borders and Auris Tech, aims to remove barriers in speech and voice-based interactions for digitally marginalized populations. It targets individuals with low digital and textual literacy, aiming to create a blueprint and toolkit benefiting low or zero-resource language communities worldwide.',
+        image: vpn, // You can replace with the correct image if available
+        technologies: ['EPSRC', 'Auris Tech', 'Translators Without Borders']
     },
     {
-        title:'Snap Shot',
-        description:'SnapShot is a stunning portfolio that I exclusively designed using React JS and tailwind CSS.This Project serves as a representation of a photographer’s work, highlighting their portfolio and services.',
-        image: {copeople},
-        git:"https://github.com/nithingooud/vpn_studios",
-        technologies:[ 'React JS', 'tailwind CSS']
+        title: 'JalJeevan Mission',
+        description: 'We have collaborated with JalJeevan Mission to develop an app using ML techniques and algorithms to detect leakage at certain locations, helping to save water and potentially serving thousands.',
+        image: copeople, // You can replace with the correct image if available
+        technologies: ['Machine Learning', 'JalJeevan Mission', 'Water Management']
+    },
+    {
+        title: 'Samvaad Sathi',
+        description: 'Our target audience for this project was the section of Indian society that doesn\'t even have a basic understanding of English letters. Our aim was to help this section of society by using modern LLMs (like ChatGPT and Gemini AI). We developed a fully deployable web application that takes audio and text input in regional languages of India (like Tamil, Gujarati, Marathi, Telugu, Malayalam, and Bengali) and gives an audio and text-based LLM response like ChatGPT in the mentioned regional languages.',
+        image: vpn, // You can replace with the correct image if available
+        technologies: ['LLMs', 'ChatGPT', 'Gemini AI', 'Regional Languages']
+    },
+    {
+        title: 'Policy Sentiment Analysis',
+        description: 'Through this project, we aim to help our policymakers understand public opinion about their analysis via Twitter. Our application scrapes tweets related to a particular topic from Twitter and leverages machine learning to categorize the tweets into several categories of emotion.',
+        image: copeople, // You can replace with the correct image if available
+        technologies: ['Twitter API', 'Machine Learning', 'Sentiment Analysis']
+    },
+    {
+        title: 'PhonePeShiksha',
+        description: 'An app developed with inputs from PrajaYatna, a popular educational magazine. The purpose is to enable poor kids to learn basic skills in a gamified manner.',
+        image: vpn, // You can replace with the correct image if available
+        technologies: ['Gamification', 'Education', 'PrajaYatna']
     }
-]
+];
 
-export default Projects
+export default Projects;
